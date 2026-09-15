@@ -1,0 +1,764 @@
+/* =========================================
+   CONFIGURAÇÕES GERAIS
+========================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+
+.app {
+  min-height: 100vh;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  padding: 30px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #f5f7f8,
+      #edf9f8
+    );
+}
+
+
+/* =========================================
+   CARD PRINCIPAL
+========================================= */
+
+.pesquisa-card {
+  position: relative;
+
+  width: 100%;
+
+  max-width: 700px;
+
+  padding: 40px;
+
+  background: #ffffff;
+
+  border-radius: 20px;
+
+  box-shadow:
+    0 15px 45px rgba(0, 0, 0, 0.10);
+
+  text-align: center;
+}
+
+
+/* =========================================
+   ÍCONE ADMINISTRATIVO
+========================================= */
+
+.botao-admin-icone {
+  position: absolute;
+
+  top: 20px;
+
+  right: 20px;
+
+  width: 42px;
+
+  height: 42px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding: 0;
+
+  margin: 0;
+
+  border: 1px solid #d7dde1;
+
+  border-radius: 50%;
+
+  background: #ffffff;
+
+  color: #667085;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+
+.botao-admin-icone:hover {
+  border-color: #2ecdc4;
+
+  background: #e6fbf9;
+
+  color: #2ecdc4;
+
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 5px 15px rgba(46, 205, 196, 0.20);
+}
+
+
+/* =========================================
+   MARCA
+========================================= */
+
+.topo-marca {
+  margin-bottom: 30px;
+}
+
+
+.logo-rius {
+  width: 120px;
+
+  height: auto;
+
+  margin-bottom: 10px;
+}
+
+
+.titulo-empresa {
+  margin: 0;
+
+  color: #17212b;
+
+  font-size: 28px;
+}
+
+
+.subtitulo-empresa {
+  margin-top: 6px;
+
+  color: #667085;
+
+  font-size: 15px;
+}
+
+
+/* =========================================
+   TEXTOS
+========================================= */
+
+h2 {
+  margin-top: 20px;
+
+  margin-bottom: 12px;
+
+  color: #17212b;
+
+  font-size: 24px;
+}
+
+
+p {
+  color: #667085;
+
+  font-size: 16px;
+
+  line-height: 1.6;
+}
+
+
+.numero-pergunta {
+  color: #2ecdc4;
+
+  font-weight: 600;
+}
+
+
+/* =========================================
+   BARRA DE PROGRESSO
+========================================= */
+
+.area-progresso {
+  margin-bottom: 30px;
+}
+
+
+.progresso-info {
+  display: flex;
+
+  justify-content: space-between;
+
+  margin-bottom: 8px;
+
+  color: #667085;
+
+  font-size: 13px;
+}
+
+
+.barra-progresso {
+  width: 100%;
+
+  height: 8px;
+
+  overflow: hidden;
+
+  background: #e8ecef;
+
+  border-radius: 20px;
+}
+
+
+.barra-progresso-preenchimento {
+  height: 100%;
+
+  background: #2ecdc4;
+
+  border-radius: 20px;
+
+  transition: width 0.4s ease;
+}
+
+
+/* =========================================
+   NOTAS
+========================================= */
+
+.grupo-notas {
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  flex-wrap: wrap;
+
+  gap: 8px;
+
+  margin: 22px 0;
+}
+
+
+.botao-nota {
+  width: 48px;
+
+  height: 48px;
+
+  padding: 0;
+
+  border: 1px solid #d7dde1;
+
+  border-radius: 10px;
+
+  background: #f4f6f7;
+
+  color: #344054;
+
+  font-size: 16px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+
+.botao-nota:hover {
+  border-color: #2ecdc4;
+
+  background: #e6fbf9;
+
+  transform: translateY(-2px);
+}
+
+
+.botao-nota.selecionado {
+  border-color: #2ecdc4;
+
+  background: #2ecdc4;
+
+  color: #ffffff;
+
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 5px 15px rgba(46, 205, 196, 0.30);
+}
+
+
+/* =========================================
+   BOTÃO PRINCIPAL
+========================================= */
+
+.botao-principal {
+  padding: 13px 25px;
+
+  margin: 0;
+
+  border: none;
+
+  border-radius: 9px;
+
+  background: #202a33;
+
+  color: #ffffff;
+
+  font-size: 15px;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+
+.botao-principal:hover {
+  background: #2ecdc4;
+
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 6px 18px rgba(46, 205, 196, 0.30);
+}
+
+
+.botao-principal:disabled {
+  opacity: 0.5;
+
+  cursor: not-allowed;
+
+  transform: none;
+}
+
+
+/* =========================================
+   VOLTAR
+========================================= */
+
+.botao-voltar {
+  padding: 13px 25px;
+
+  margin: 0;
+
+  border: 1px solid #d0d5dd;
+
+  border-radius: 9px;
+
+  background: #ffffff;
+
+  color: #344054;
+
+  font-size: 15px;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+
+.botao-voltar:hover {
+  border-color: #2ecdc4;
+
+  background: #f1fffe;
+
+  color: #1aa9a2;
+}
+
+
+/* =========================================
+   AÇÕES
+========================================= */
+
+.acoes {
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  gap: 12px;
+
+  margin-top: 20px;
+}
+
+
+/* =========================================
+   MOTIVOS
+========================================= */
+
+.grupo-motivos {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  justify-content: center;
+
+  gap: 8px;
+
+  margin: 20px 0;
+}
+
+
+.botao-motivo {
+  padding: 11px 16px;
+
+  border: 1px solid #d7dde1;
+
+  border-radius: 9px;
+
+  background: #f4f6f7;
+
+  color: #344054;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+
+.botao-motivo:hover {
+  border-color: #2ecdc4;
+
+  background: #e6fbf9;
+}
+
+
+.botao-motivo.selecionado {
+  border-color: #2ecdc4;
+
+  background: #2ecdc4;
+
+  color: #ffffff;
+}
+
+
+/* =========================================
+   INPUT
+========================================= */
+
+input {
+  width: 100%;
+
+  margin: 15px 0;
+
+  padding: 14px;
+
+  border: 1px solid #d0d5dd;
+
+  border-radius: 10px;
+
+  font-size: 16px;
+
+  outline: none;
+}
+
+
+input:focus {
+  border-color: #2ecdc4;
+
+  box-shadow:
+    0 0 0 3px rgba(46, 205, 196, 0.12);
+}
+
+
+/* =========================================
+   TEXTAREA
+========================================= */
+
+textarea {
+  width: 100%;
+
+  min-height: 140px;
+
+  margin-top: 15px;
+
+  padding: 15px;
+
+  border: 1px solid #d0d5dd;
+
+  border-radius: 10px;
+
+  font-family: inherit;
+
+  font-size: 16px;
+
+  resize: vertical;
+
+  outline: none;
+}
+
+
+textarea:focus {
+  border-color: #2ecdc4;
+
+  box-shadow:
+    0 0 0 3px rgba(46, 205, 196, 0.12);
+}
+
+
+/* =========================================
+   ERRO
+========================================= */
+
+.mensagem-erro {
+  margin-top: 15px;
+
+  color: #c62828;
+}
+
+
+/* =========================================
+   SUCESSO
+========================================= */
+
+.icone-sucesso {
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  width: 65px;
+
+  height: 65px;
+
+  margin: 0 auto 20px auto;
+
+  border-radius: 50%;
+
+  background: #2ecdc4;
+
+  color: #ffffff;
+
+  font-size: 32px;
+
+  font-weight: bold;
+}
+
+
+/* =========================================
+   LOGIN ADMINISTRATIVO
+========================================= */
+
+.login-card {
+  width: 100%;
+
+  max-width: 430px;
+
+  padding: 40px;
+
+  background: #ffffff;
+
+  border-radius: 20px;
+
+  box-shadow:
+    0 15px 45px rgba(0, 0, 0, 0.10);
+}
+
+
+.login-icone {
+  text-align: center;
+
+  font-size: 38px;
+
+  margin-bottom: 15px;
+}
+
+
+.login-titulo {
+  margin: 0;
+
+  color: #17212b;
+
+  font-size: 26px;
+
+  text-align: center;
+}
+
+
+.login-subtitulo {
+  margin-bottom: 30px;
+
+  text-align: center;
+}
+
+
+.login-form {
+  width: 100%;
+}
+
+
+.campo-login {
+  margin-bottom: 18px;
+}
+
+
+.campo-login label {
+  display: block;
+
+  margin-bottom: 7px;
+
+  color: #344054;
+
+  font-size: 14px;
+
+  font-weight: 600;
+}
+
+
+.campo-login input {
+  margin: 0;
+}
+
+
+.botao-login {
+  width: 100%;
+
+  padding: 14px;
+
+  margin-top: 10px;
+
+  border: none;
+
+  border-radius: 9px;
+
+  background: #202a33;
+
+  color: #ffffff;
+
+  font-size: 15px;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+
+.botao-login:hover {
+  background: #2ecdc4;
+}
+
+
+.botao-login:disabled {
+  opacity: 0.5;
+
+  cursor: not-allowed;
+}
+
+
+.voltar-login {
+  margin-bottom: 20px;
+
+  padding: 0;
+
+  border: none;
+
+  background: transparent;
+
+  color: #667085;
+
+  cursor: pointer;
+}
+
+
+.voltar-login:hover {
+  color: #2ecdc4;
+}
+
+
+/* =========================================
+   DASHBOARD TEMPORÁRIO
+========================================= */
+
+.dashboard-teste {
+  width: 100%;
+
+  max-width: 700px;
+
+  padding: 40px;
+
+  background: #ffffff;
+
+  border-radius: 20px;
+
+  text-align: center;
+
+  box-shadow:
+    0 15px 45px rgba(0, 0, 0, 0.10);
+}
+
+
+/* =========================================
+   RESPONSIVIDADE
+========================================= */
+
+@media (max-width: 600px) {
+
+  .app {
+    padding: 15px;
+  }
+
+
+  .pesquisa-card {
+    padding: 28px 18px;
+  }
+
+
+  .botao-admin-icone {
+    top: 14px;
+
+    right: 14px;
+
+    width: 38px;
+
+    height: 38px;
+  }
+
+
+  .logo-rius {
+    width: 100px;
+  }
+
+
+  .titulo-empresa {
+    font-size: 22px;
+  }
+
+
+  h2 {
+    font-size: 20px;
+  }
+
+
+  .botao-nota {
+    width: 42px;
+
+    height: 42px;
+
+    font-size: 14px;
+  }
+
+
+  .grupo-nps {
+    gap: 5px;
+  }
+
+
+  .botao-motivo {
+    width: 100%;
+  }
+
+
+  .acoes {
+    flex-direction: column;
+  }
+
+
+  .botao-voltar,
+  .botao-principal {
+    width: 100%;
+  }
+
+
+  .login-card {
+    padding: 30px 20px;
+  }
+
+}
