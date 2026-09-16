@@ -1,199 +1,464 @@
-# CX Analytics - Rius Soluções e Tecnologia
+# Pesquisa de Satisfação - Rius Soluções e Tecnologia
 
-Plataforma web desenvolvida para coleta e análise de indicadores de experiência do cliente, com foco em CSAT, CES e NPS.
+Sistema web desenvolvido para coletar e analisar a experiência dos clientes da Rius Soluções e Tecnologia por meio dos indicadores CSAT, CES e NPS.
 
-O objetivo do projeto é permitir que clientes avaliem de forma rápida e anônima a experiência com o atendimento, a facilidade de resolução e a percepção geral sobre a Rius Soluções e Tecnologia.
+O projeto possui uma pesquisa pública e anônima para os clientes e uma área administrativa protegida por autenticação para acompanhamento dos resultados.
 
-## Objetivo do MVP
+---
 
-O MVP foi desenvolvido para validar o fluxo completo de coleta de avaliações, armazenamento dos dados e acesso administrativo.
+## Objetivo do projeto
 
-A proposta inicial contempla:
+O objetivo da aplicação é transformar o feedback dos clientes em dados que possam ser utilizados para acompanhar a qualidade do atendimento e identificar oportunidades de melhoria.
 
-- coleta de CSAT;
-- coleta de CES;
-- coleta de NPS;
-- identificação automática de promotores, neutros e detratores;
-- coleta de motivo da insatisfação;
-- campo de comentário opcional;
-- armazenamento das avaliações no Supabase;
-- área administrativa protegida por autenticação;
-- preparação para dashboard com indicadores e gráficos.
+A pesquisa avalia três pontos principais:
+
+- satisfação com o atendimento;
+- facilidade para resolução da solicitação;
+- percepção do cliente em relação à empresa.
+
+Os dados coletados são armazenados no Supabase e apresentados em um dashboard administrativo.
+
+---
 
 ## Funcionalidades
 
-### Pesquisa pública
+### Pesquisa de satisfação
 
-A pesquisa pode ser respondida sem necessidade de login.
+A pesquisa é pública e não exige identificação do cliente.
 
-O fluxo atual é composto por:
+Principais funcionalidades:
 
-1. Tela inicial de apresentação;
-2. Pergunta de CSAT;
-3. Pergunta de CES;
-4. Pergunta de NPS;
-5. Pergunta condicional sobre motivo da insatisfação;
-6. Campo de comentário opcional;
-7. Envio da avaliação;
-8. Tela de confirmação.
+- pesquisa anônima;
+- interface simples e responsiva;
+- fluxo dividido em etapas;
+- barra de progresso;
+- avaliação CSAT de 1 a 5;
+- avaliação CES de 1 a 5;
+- avaliação NPS de 0 a 10;
+- identificação automática de avaliações negativas;
+- solicitação de motivo de insatisfação quando necessário;
+- opção de informar outro motivo;
+- campo opcional para comentários;
+- envio das respostas para o Supabase;
+- tela de confirmação após o envio.
+
+---
 
 ## CSAT
 
+Customer Satisfaction Score.
+
 O CSAT é utilizado para medir a satisfação do cliente com o atendimento recebido.
 
-Escala utilizada:
+Na pesquisa, o cliente responde utilizando notas de 1 a 5.
 
-- 1 - Muito insatisfeito
-- 2 - Insatisfeito
-- 3 - Neutro
-- 4 - Satisfeito
-- 5 - Muito satisfeito
+- 1 = Muito insatisfeito
+- 2 = Insatisfeito
+- 3 = Neutro
+- 4 = Satisfeito
+- 5 = Muito satisfeito
 
-No dashboard, as notas 4 e 5 poderão ser consideradas avaliações positivas para cálculo do índice de satisfação.
+No dashboard, são consideradas avaliações satisfeitas as notas 4 e 5.
 
-## CES
+O cálculo utilizado é:
 
-O CES mede o nível de esforço percebido pelo cliente para resolver sua solicitação.
+```text
+CSAT = (avaliações com nota 4 ou 5 / total de avaliações) × 100
+CES
 
-Escala utilizada:
+Customer Effort Score.
 
-- 1 - Muito difícil
-- 2 - Difícil
-- 3 - Neutro
-- 4 - Fácil
-- 5 - Muito fácil
+O CES mede o nível de esforço necessário para o cliente resolver sua solicitação.
 
-O indicador poderá ser apresentado por meio da média das respostas coletadas.
+A avaliação utiliza notas de 1 a 5.
 
-## NPS
+1 = Muito difícil
+2 = Difícil
+3 = Neutro
+4 = Fácil
+5 = Muito fácil
 
-O NPS mede a percepção geral do cliente sobre a empresa.
+No dashboard, o CES é apresentado através da média das respostas.
+
+O cálculo utilizado é:
+
+CES = soma das notas / total de avaliações
+NPS
+
+Net Promoter Score.
+
+O NPS é utilizado para analisar a percepção do cliente sobre a empresa.
 
 A pergunta utilizada é:
 
-"De 0 a 10, o quanto você recomendaria a Rius Soluções e Tecnologia para outra empresa?"
+De 0 a 10, o quanto você recomendaria a
+Rius Soluções e Tecnologia para outra empresa?
 
-Classificação utilizada:
+As respostas são classificadas da seguinte forma:
 
-- 0 a 6 - Detrator
-- 7 e 8 - Neutro
-- 9 e 10 - Promotor
+0 a 6 = Detratores
+7 e 8 = Neutros
+9 e 10 = Promotores
 
-A classificação é realizada automaticamente no banco de dados por meio de uma trigger no Supabase.
+O cálculo utilizado é:
 
-## Pergunta condicional
+NPS = % de Promotores - % de Detratores
 
-Quando o cliente apresenta uma avaliação negativa, o sistema solicita o principal motivo da insatisfação.
+O resultado pode variar de:
 
-A pergunta é exibida quando:
+-100 até +100
+Motivos de insatisfação
 
-- CSAT for menor ou igual a 3; ou
-- NPS for menor ou igual a 6.
+Quando a avaliação indica uma experiência negativa, o sistema solicita o principal motivo da insatisfação.
 
-Motivos disponíveis:
+Atualmente estão disponíveis:
 
-- Tempo de espera
-- Problema não resolvido
-- Dificuldade no sistema
-- Atendimento recebido
-- Falta de informação
-- Processo complicado
-- Outro
+Tempo de espera
+Problema não resolvido
+Dificuldade no sistema
+Atendimento recebido
+Falta de informação
+Processo complicado
+Outro
 
-Caso a opção "Outro" seja selecionada, um campo adicional é exibido para preenchimento.
+Caso a opção "Outro" seja selecionada, o cliente pode informar o motivo manualmente.
 
-## Comentário
+Tela inicial
 
-Ao final da pesquisa, o cliente pode inserir um comentário livre.
+A página inicial apresenta a pesquisa de forma objetiva, mantendo a identificação da Rius Soluções e Tecnologia sem retirar o foco da avaliação.
 
-Esse campo é opcional e tem como objetivo complementar os dados quantitativos com informações qualitativas.
+São apresentados os três principais pontos analisados:
 
-## Armazenamento dos dados
+Atendimento
+Facilidade
+Recomendação
 
-Os dados são armazenados no Supabase utilizando PostgreSQL.
+Também é informado que a pesquisa é anônima e leva menos de um minuto.
 
-A tabela principal do MVP é:
+Área administrativa
 
-`avaliacoes`
+A aplicação possui uma área administrativa protegida por autenticação.
 
-Principais campos:
+O acesso é realizado através do Supabase Auth utilizando e-mail e senha.
 
-- `id`
-- `csat`
-- `ces`
-- `nps`
-- `classificacao_nps`
-- `motivo_insatisfacao`
-- `outro_motivo`
-- `comentario`
-- `data_avaliacao`
+Somente usuários autenticados possuem acesso ao dashboard.
 
-## Segurança
+Dashboard
 
-O projeto utiliza Row Level Security no Supabase.
+O dashboard apresenta os dados das avaliações armazenadas no Supabase.
 
-A configuração atual permite:
+Atualmente estão disponíveis os seguintes indicadores:
 
-- usuários anônimos enviarem avaliações;
-- usuários anônimos não consultarem avaliações;
-- usuários autenticados consultarem os dados administrativos.
+total de avaliações;
+CSAT;
+CES;
+NPS;
+quantidade de promotores;
+quantidade de neutros;
+quantidade de detratores;
+percentual de promotores;
+percentual de neutros;
+percentual de detratores.
+Gráficos
 
-As credenciais do Supabase são configuradas por meio de variáveis de ambiente e não devem ser enviadas ao repositório.
+O dashboard utiliza ApexCharts para visualização dos dados.
 
-## Área administrativa
+Distribuição do NPS
 
-A aplicação possui uma área administrativa separada da pesquisa pública.
+Gráfico do tipo donut apresentando:
 
-O acesso é realizado por meio do Supabase Auth utilizando:
+Promotores
+Neutros
+Detratores
 
-- e-mail;
-- senha.
+O valor atual do NPS também é apresentado no centro do gráfico.
 
-A área administrativa será utilizada para acesso aos indicadores e ao dashboard.
+Distribuição do CSAT
 
-## Dashboard
+Gráfico de barras apresentando a quantidade de avaliações recebidas para cada nota:
 
-O dashboard está previsto como próxima etapa do MVP.
+Nota 1
+Nota 2
+Nota 3
+Nota 4
+Nota 5
+Motivos de insatisfação
 
-Os primeiros indicadores serão:
+Gráfico de barras horizontais mostrando os principais motivos informados pelos clientes.
 
-- total de avaliações;
-- CSAT;
-- CES;
-- NPS;
-- quantidade de promotores;
-- quantidade de neutros;
-- quantidade de detratores;
-- principais motivos de insatisfação.
+Filtro de datas
 
-Também está prevista a utilização de gráficos para acompanhamento da evolução dos indicadores.
+O dashboard possui filtro por data inicial e data final.
 
-## Tecnologias utilizadas
+O comportamento é:
 
-- React
-- Vite
-- JavaScript
-- CSS
-- Supabase
-- PostgreSQL
-- Supabase Auth
-- ApexCharts
-- React ApexCharts
-- Git
-- GitHub
+Sem datas preenchidas
+→ mostra as avaliações do mês atual
 
-## Estrutura atual
+Somente data inicial
+→ mostra as avaliações daquela data em diante
 
-```text
+Somente data final
+→ mostra as avaliações até aquela data
+
+Data inicial + data final
+→ mostra somente as avaliações dentro do intervalo
+
+O filtro é aplicado simultaneamente a:
+
+total de avaliações;
+CSAT;
+CES;
+NPS;
+distribuição do NPS;
+distribuição do CSAT;
+motivos de insatisfação;
+resumo de promotores, neutros e detratores.
+Banco de dados
+
+O projeto utiliza Supabase com PostgreSQL.
+
+A principal tabela utilizada é:
+
+avaliacoes
+
+Os principais campos são:
+
+id
+csat
+ces
+nps
+classificacao_nps
+motivo_insatisfacao
+outro_motivo
+comentario
+data_avaliacao
+Classificação automática do NPS
+
+A classificação do NPS é realizada automaticamente no banco de dados.
+
+As regras utilizadas são:
+
+0 até 6
+→ Detrator
+
+7 ou 8
+→ Neutro
+
+9 ou 10
+→ Promotor
+
+Dessa forma, a aplicação não depende apenas do front-end para definir a classificação da resposta.
+
+Segurança
+
+O projeto utiliza Row Level Security (RLS) do Supabase.
+
+A pesquisa pública possui permissão para inserir avaliações sem necessidade de autenticação.
+
+Usuários autenticados possuem acesso aos dados necessários para utilização do dashboard administrativo.
+
+As credenciais utilizadas pelo front-end são armazenadas através de variáveis de ambiente.
+
+O arquivo:
+
+.env
+
+não deve ser enviado ao GitHub.
+
+Variáveis de ambiente
+
+Crie um arquivo .env na raiz do projeto.
+
+Exemplo:
+
+VITE_SUPABASE_URL=https://SEU-PROJETO.supabase.co
+VITE_SUPABASE_PUBLISHABLE_KEY=SUA_CHAVE_PUBLICA
+
+A URL deve conter somente o endereço principal do projeto Supabase.
+
+Exemplo:
+
+https://xxxxxxxxxxxxxxxx.supabase.co
+
+Não utilize:
+
+/rest/v1
+
+na variável VITE_SUPABASE_URL.
+
+Tecnologias utilizadas
+Front-end
+React
+JavaScript
+CSS
+Vite
+Banco de dados e autenticação
+Supabase
+PostgreSQL
+Supabase Auth
+Row Level Security
+Visualização de dados
+ApexCharts
+React ApexCharts
+Controle de versão
+Git
+GitHub
+Estrutura do projeto
 src/
+│
 ├── assets/
 │   └── logo-rius.png
+│
 ├── components/
-│   ├── LoginAdmin.jsx
-│   └── Dashboard.jsx
+│   ├── Dashboard.jsx
+│   └── LoginAdmin.jsx
+│
 ├── lib/
 │   └── supabase.js
+│
 ├── App.jsx
 ├── App.css
 ├── index.css
 └── main.jsx
+Instalação
+
+Clone o repositório:
+
+git clone https://github.com/MaysonFCarmo/pesquisa_de_satisfacao_Rius.git
+
+Entre na pasta do projeto:
+
+cd pesquisa_de_satisfacao_Rius
+
+Instale as dependências:
+
+npm install
+
+Caso necessário, instale também as bibliotecas utilizadas pelo projeto:
+
+npm install @supabase/supabase-js apexcharts react-apexcharts
+
+Crie o arquivo .env com as credenciais do Supabase.
+
+Depois execute:
+
+npm run dev
+
+O Vite disponibilizará o endereço local da aplicação.
+
+Normalmente:
+
+http://localhost:5173
+Scripts disponíveis
+
+Executar o projeto em ambiente de desenvolvimento:
+
+npm run dev
+
+Gerar a versão de produção:
+
+npm run build
+
+Visualizar a versão de produção localmente:
+
+npm run preview
+Fluxo da pesquisa
+
+O fluxo atual da aplicação é:
+
+Tela inicial
+      ↓
+CSAT
+      ↓
+CES
+      ↓
+NPS
+      ↓
+Avaliação negativa?
+      ↓
+Sim → Motivo da insatisfação
+      ↓
+Comentário opcional
+      ↓
+Envio
+      ↓
+Confirmação
+
+Caso a avaliação não seja considerada negativa, o cliente segue diretamente do NPS para o comentário opcional.
+
+Status do projeto
+
+Versão atual:
+
+v0.2.0
+
+O MVP já possui:
+
+pesquisa funcional;
+integração com Supabase;
+armazenamento das avaliações;
+CSAT;
+CES;
+NPS;
+classificação automática do NPS;
+motivos de insatisfação;
+comentários;
+autenticação administrativa;
+dashboard;
+gráficos;
+filtro por datas;
+interface responsiva.
+Próximas melhorias
+
+Algumas funcionalidades planejadas para as próximas versões:
+
+gráfico de evolução histórica dos indicadores;
+evolução de CSAT ao longo do tempo;
+evolução de CES ao longo do tempo;
+evolução de NPS ao longo do tempo;
+tabela de avaliações recentes;
+visualização individual dos comentários;
+análise detalhada dos motivos classificados como "Outro";
+exportação das avaliações para CSV;
+melhorias na persistência da sessão administrativa;
+tratamento automático de sessão expirada;
+melhorias adicionais de responsividade;
+deploy da aplicação em ambiente de produção.
+Versionamento
+v0.1.0
+
+Primeira versão funcional do MVP.
+
+Principais funcionalidades:
+
+pesquisa CSAT;
+pesquisa CES;
+pesquisa NPS;
+integração com Supabase;
+armazenamento das avaliações.
+v0.2.0
+
+Evolução da pesquisa e criação da área administrativa.
+
+Principais funcionalidades:
+
+nova interface da pesquisa;
+autenticação administrativa;
+dashboard;
+cálculo de CSAT;
+cálculo de CES;
+cálculo de NPS;
+gráficos;
+motivos de insatisfação;
+filtro por data inicial e final;
+visualização padrão do mês atual.
+Autor
+
+Desenvolvido por Mayson Farias do Carmo.
+
+GitHub:
+
+github.com/MaysonFCarmo
+
+Projeto desenvolvido como aplicação prática de desenvolvimento web, análise de experiência do cliente e integração com banco de dados em nuvem.

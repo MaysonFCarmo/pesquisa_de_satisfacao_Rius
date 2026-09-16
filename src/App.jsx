@@ -16,7 +16,6 @@ function App() {
   // =====================================================
 
   const [tela, setTela] = useState('pesquisa')
-
   const [adminLogado, setAdminLogado] = useState(false)
 
 
@@ -32,9 +31,7 @@ function App() {
   // =====================================================
 
   const [csat, setCsat] = useState(null)
-
   const [ces, setCes] = useState(null)
-
   const [nps, setNps] = useState(null)
 
   const [motivoInsatisfacao, setMotivoInsatisfacao] =
@@ -52,7 +49,6 @@ function App() {
   // =====================================================
 
   const [enviando, setEnviando] = useState(false)
-
   const [erro, setErro] = useState('')
 
 
@@ -70,7 +66,7 @@ function App() {
 
 
   // =====================================================
-  // INICIAR
+  // INICIAR PESQUISA
   // =====================================================
 
   function iniciarPesquisa() {
@@ -229,7 +225,6 @@ function App() {
   async function enviarAvaliacao() {
 
     setEnviando(true)
-
     setErro('')
 
 
@@ -237,11 +232,8 @@ function App() {
       .from('avaliacoes')
       .insert([
         {
-
           csat: csat,
-
           ces: ces,
-
           nps: nps,
 
           motivo_insatisfacao:
@@ -252,7 +244,6 @@ function App() {
 
           comentario:
             comentario.trim() || null
-
         }
       ])
 
@@ -278,7 +269,6 @@ function App() {
 
 
     setEnviando(false)
-
     setEtapa(6)
 
   }
@@ -291,15 +281,11 @@ function App() {
   function novaAvaliacao() {
 
     setCsat(null)
-
     setCes(null)
-
     setNps(null)
 
     setMotivoInsatisfacao('')
-
     setOutroMotivo('')
-
     setComentario('')
 
     setErro('')
@@ -322,7 +308,6 @@ function App() {
         onLogin={() => {
 
           setAdminLogado(true)
-
           setTela('dashboard')
 
         }}
@@ -356,7 +341,6 @@ function App() {
         onSair={() => {
 
           setAdminLogado(false)
-
           setTela('pesquisa')
 
         }}
@@ -379,16 +363,12 @@ function App() {
       <div className="pesquisa-card">
 
 
-        {/* =================================================
-            ÍCONE ADMINISTRATIVO
-        ================================================= */}
+        {/* ACESSO ADMINISTRATIVO */}
 
         {etapa === 0 && (
 
           <button
-
             type="button"
-
             className="botao-admin-icone"
 
             onClick={() =>
@@ -396,56 +376,28 @@ function App() {
             }
 
             title="Área administrativa"
-
             aria-label="Acessar área administrativa"
-
           >
 
             <svg
-
               width="22"
-
               height="22"
-
               viewBox="0 0 24 24"
-
               fill="none"
-
               xmlns="http://www.w3.org/2000/svg"
-
             >
 
               <path
-
-                d="
-                  M12 12
-                  C14.7614 12 17 9.76142 17 7
-                  C17 4.23858 14.7614 2 12 2
-                  C9.23858 2 7 4.23858 7 7
-                  C7 9.76142 9.23858 12 12 12Z
-                "
-
+                d="M12 12C14.7614 12 17 9.76142 17 7C17 4.23858 14.7614 2 12 2C9.23858 2 7 4.23858 7 7C7 9.76142 9.23858 12 12 12Z"
                 stroke="currentColor"
-
                 strokeWidth="2"
-
               />
 
-
               <path
-
-                d="
-                  M4 22
-                  C4 17.5817 7.58172 14 12 14
-                  C16.4183 14 20 17.5817 20 22
-                "
-
+                d="M4 22C4 17.5817 7.58172 14 12 14C16.4183 14 20 17.5817 20 22"
                 stroke="currentColor"
-
                 strokeWidth="2"
-
                 strokeLinecap="round"
-
               />
 
             </svg>
@@ -455,42 +407,55 @@ function App() {
         )}
 
 
-        {/* =================================================
-            CABEÇALHO
-        ================================================= */}
+        {/* CABEÇALHO INICIAL */}
 
-        <div className="topo-marca">
+        {etapa === 0 && (
 
-          <img
+          <div className="topo-marca topo-marca-inicial">
 
-            src={logoRius}
+            <img
+              src={logoRius}
+              alt="Logo Rius Soluções e Tecnologia"
+              className="logo-rius logo-rius-inicial"
+            />
 
-            alt="Logo Rius Soluções e Tecnologia"
+            <p className="empresa-assinatura">
 
-            className="logo-rius"
+              Pesquisa realizada por
 
-          />
+              <strong>
+                {' '}Rius Soluções e Tecnologia
+              </strong>
 
+            </p>
 
-          <h1 className="titulo-empresa">
+          </div>
 
-            Rius Soluções e Tecnologia
-
-          </h1>
-
-
-          <p className="subtitulo-empresa">
-
-            Pesquisa de satisfação do atendimento
-
-          </p>
-
-        </div>
+        )}
 
 
-        {/* =================================================
-            PROGRESSO
-        ================================================= */}
+        {/* CABEÇALHO DAS PERGUNTAS */}
+
+        {etapa >= 1 && (
+
+          <div className="topo-marca topo-marca-pesquisa">
+
+            <img
+              src={logoRius}
+              alt="Logo Rius Soluções e Tecnologia"
+              className="logo-rius"
+            />
+
+            <p className="marca-pesquisa">
+              Rius Soluções e Tecnologia
+            </p>
+
+          </div>
+
+        )}
+
+
+        {/* PROGRESSO */}
 
         {etapa >= 1 && etapa <= 5 && (
 
@@ -499,16 +464,11 @@ function App() {
             <div className="progresso-info">
 
               <span>
-
                 Progresso
-
               </span>
 
-
               <span>
-
                 {progresso}%
-
               </span>
 
             </div>
@@ -533,47 +493,65 @@ function App() {
         )}
 
 
-        {/* =================================================
-            TELA INICIAL
-        ================================================= */}
+        {/* TELA INICIAL */}
 
         {etapa === 0 && (
 
-          <div>
+          <div className="hero-pesquisa">
 
-            <h2>
-
-              Sua opinião é importante para nós
-
-            </h2>
+            <span className="badge-pesquisa">
+              Pesquisa de satisfação
+            </span>
 
 
-            <p>
+            <h1 className="titulo-pesquisa-inicial">
 
-              Queremos entender como foi sua experiência
-              com nosso atendimento.
+              Como foi sua experiência com nosso atendimento?
+
+            </h1>
+
+
+            <p className="texto-pesquisa-inicial">
+
+              Sua resposta nos ajuda a entender a qualidade
+              do atendimento e identificar oportunidades
+              de melhoria.
 
             </p>
 
 
-            <p>
+            <p className="texto-pesquisa-secundario">
 
-              A pesquisa leva menos de 1 minuto.
+              A pesquisa é anônima, simples e leva
+              menos de 1 minuto.
 
             </p>
+
+
+            <div className="beneficios-pesquisa">
+
+              <span>
+                Atendimento
+              </span>
+
+              <span>
+                Facilidade
+              </span>
+
+              <span>
+                Recomendação
+              </span>
+
+            </div>
 
 
             <button
-
               type="button"
-
-              className="botao-principal"
-
+              className="botao-principal botao-iniciar-pesquisa"
               onClick={iniciarPesquisa}
-
             >
 
-              Iniciar avaliação
+              Iniciar pesquisa
 
             </button>
 
@@ -582,33 +560,25 @@ function App() {
         )}
 
 
-        {/* =================================================
-            CSAT
-        ================================================= */}
+        {/* CSAT */}
 
         {etapa === 1 && (
 
           <div>
 
             <p className="numero-pergunta">
-
               Pergunta 1 de 3
-
             </p>
 
 
             <h2>
-
               Como você avalia o atendimento recebido?
-
             </h2>
 
 
             <p>
-
               1 = Muito insatisfeito |
               5 = Muito satisfeito
-
             </p>
 
 
@@ -617,9 +587,7 @@ function App() {
               {[1, 2, 3, 4, 5].map((nota) => (
 
                 <button
-
                   type="button"
-
                   key={nota}
 
                   className={
@@ -631,7 +599,6 @@ function App() {
                   onClick={() =>
                     setCsat(nota)
                   }
-
                 >
 
                   {nota}
@@ -652,22 +619,16 @@ function App() {
                   Nota selecionada:{' '}
 
                   <strong>
-
                     {csat}
-
                   </strong>
 
                 </p>
 
 
                 <button
-
                   type="button"
-
                   className="botao-principal"
-
                   onClick={avancarParaCes}
-
                 >
 
                   Continuar
@@ -683,33 +644,25 @@ function App() {
         )}
 
 
-        {/* =================================================
-            CES
-        ================================================= */}
+        {/* CES */}
 
         {etapa === 2 && (
 
           <div>
 
             <p className="numero-pergunta">
-
               Pergunta 2 de 3
-
             </p>
 
 
             <h2>
-
               Foi fácil resolver sua solicitação?
-
             </h2>
 
 
             <p>
-
               1 = Muito difícil |
               5 = Muito fácil
-
             </p>
 
 
@@ -718,9 +671,7 @@ function App() {
               {[1, 2, 3, 4, 5].map((nota) => (
 
                 <button
-
                   type="button"
-
                   key={nota}
 
                   className={
@@ -732,7 +683,6 @@ function App() {
                   onClick={() =>
                     setCes(nota)
                   }
-
                 >
 
                   {nota}
@@ -751,9 +701,7 @@ function App() {
                 Nota selecionada:{' '}
 
                 <strong>
-
                   {ces}
-
                 </strong>
 
               </p>
@@ -764,13 +712,9 @@ function App() {
             <div className="acoes">
 
               <button
-
                 type="button"
-
                 className="botao-voltar"
-
                 onClick={voltarEtapa}
-
               >
 
                 ← Voltar
@@ -781,13 +725,9 @@ function App() {
               {ces !== null && (
 
                 <button
-
                   type="button"
-
                   className="botao-principal"
-
                   onClick={avancarParaNps}
-
                 >
 
                   Continuar
@@ -803,18 +743,14 @@ function App() {
         )}
 
 
-        {/* =================================================
-            NPS
-        ================================================= */}
+        {/* NPS */}
 
         {etapa === 3 && (
 
           <div>
 
             <p className="numero-pergunta">
-
               Pergunta 3 de 3
-
             </p>
 
 
@@ -842,9 +778,7 @@ function App() {
               ].map((nota) => (
 
                 <button
-
                   type="button"
-
                   key={nota}
 
                   className={
@@ -856,7 +790,6 @@ function App() {
                   onClick={() =>
                     setNps(nota)
                   }
-
                 >
 
                   {nota}
@@ -875,9 +808,7 @@ function App() {
                 Nota selecionada:{' '}
 
                 <strong>
-
                   {nps}
-
                 </strong>
 
               </p>
@@ -888,13 +819,9 @@ function App() {
             <div className="acoes">
 
               <button
-
                 type="button"
-
                 className="botao-voltar"
-
                 onClick={voltarEtapa}
-
               >
 
                 ← Voltar
@@ -905,13 +832,9 @@ function App() {
               {nps !== null && (
 
                 <button
-
                   type="button"
-
                   className="botao-principal"
-
                   onClick={avancarDepoisDoNps}
-
                 >
 
                   Continuar
@@ -927,26 +850,19 @@ function App() {
         )}
 
 
-        {/* =================================================
-            MOTIVO DA INSATISFAÇÃO
-        ================================================= */}
+        {/* MOTIVO */}
 
         {etapa === 4 && (
 
           <div>
 
             <h2>
-
               Queremos entender melhor sua experiência
-
             </h2>
 
 
             <p>
-
-              Qual foi o principal motivo da sua
-              insatisfação?
-
+              Qual foi o principal motivo da sua insatisfação?
             </p>
 
 
@@ -963,9 +879,7 @@ function App() {
               ].map((motivo) => (
 
                 <button
-
                   type="button"
-
                   key={motivo}
 
                   className={
@@ -977,7 +891,6 @@ function App() {
                   onClick={() =>
                     setMotivoInsatisfacao(motivo)
                   }
-
                 >
 
                   {motivo}
@@ -996,9 +909,7 @@ function App() {
                 Motivo selecionado:{' '}
 
                 <strong>
-
                   {motivoInsatisfacao}
-
                 </strong>
 
               </p>
@@ -1009,11 +920,8 @@ function App() {
             {motivoInsatisfacao === 'Outro' && (
 
               <input
-
                 type="text"
-
                 placeholder="Digite o motivo"
-
                 value={outroMotivo}
 
                 onChange={(event) =>
@@ -1021,7 +929,6 @@ function App() {
                     event.target.value
                   )
                 }
-
               />
 
             )}
@@ -1030,13 +937,9 @@ function App() {
             <div className="acoes">
 
               <button
-
                 type="button"
-
                 className="botao-voltar"
-
                 onClick={voltarEtapa}
-
               >
 
                 ← Voltar
@@ -1047,13 +950,9 @@ function App() {
               {motivoInsatisfacao !== '' && (
 
                 <button
-
                   type="button"
-
                   className="botao-principal"
-
                   onClick={avancarParaComentario}
-
                 >
 
                   Continuar
@@ -1069,40 +968,30 @@ function App() {
         )}
 
 
-        {/* =================================================
-            COMENTÁRIO
-        ================================================= */}
+        {/* COMENTÁRIO */}
 
         {etapa === 5 && (
 
           <div>
 
             <h2>
-
               Gostaria de deixar algum comentário?
-
             </h2>
 
 
             <p>
-
               Essa etapa é opcional.
-
             </p>
 
 
             <p>
-
               Sua opinião nos ajuda a melhorar
               continuamente nossos serviços.
-
             </p>
 
 
             <textarea
-
               placeholder="Digite seu comentário..."
-
               value={comentario}
 
               onChange={(event) =>
@@ -1110,20 +999,15 @@ function App() {
                   event.target.value
                 )
               }
-
             />
 
 
             <div className="acoes">
 
               <button
-
                 type="button"
-
                 className="botao-voltar"
-
                 onClick={voltarEtapa}
-
               >
 
                 ← Voltar
@@ -1132,15 +1016,10 @@ function App() {
 
 
               <button
-
                 type="button"
-
                 className="botao-principal"
-
                 onClick={enviarAvaliacao}
-
                 disabled={enviando}
-
               >
 
                 {
@@ -1157,9 +1036,7 @@ function App() {
             {erro !== '' && (
 
               <p className="mensagem-erro">
-
                 {erro}
-
               </p>
 
             )}
@@ -1169,51 +1046,37 @@ function App() {
         )}
 
 
-        {/* =================================================
-            SUCESSO
-        ================================================= */}
+        {/* SUCESSO */}
 
         {etapa === 6 && (
 
           <div>
 
             <div className="icone-sucesso">
-
               ✓
-
             </div>
 
 
             <h2>
-
               Obrigado pela sua avaliação!
-
             </h2>
 
 
             <p>
-
               Sua resposta foi enviada com sucesso.
-
             </p>
 
 
             <p>
-
               Seu feedback é muito importante para
               a Rius Soluções e Tecnologia.
-
             </p>
 
 
             <button
-
               type="button"
-
               className="botao-principal"
-
               onClick={novaAvaliacao}
-
             >
 
               Nova avaliação
@@ -1223,6 +1086,7 @@ function App() {
           </div>
 
         )}
+
 
       </div>
 
