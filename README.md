@@ -62,7 +62,6 @@ No dashboard, são consideradas avaliações satisfeitas as notas 4 e 5.
 
 O cálculo utilizado é:
 
-```text
 CSAT = (avaliações com nota 4 ou 5 / total de avaliações) × 100
 CES
 
